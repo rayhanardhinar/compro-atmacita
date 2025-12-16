@@ -1,13 +1,37 @@
+"use client";
 import Link from "next/link";
+// Import usePathname dari navigation untuk mendapatkan path saat ini
+import { usePathname } from "next/navigation";
+import React from "react";
 
-const Navbar = () => {
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Profil", href: "/profile" },
-    { name: "Layanan Psikologi", href: "/services/psychology" },
-    { name: "Pelatihan & Sertifikasi", href: "/services/training" },
-    { name: "Kontak", href: "/contact" },
-  ];
+// Definisikan tipe untuk item navigasi
+interface NavItem {
+  name: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "Profil", href: "/profile" },
+  { name: "Layanan Psikologi", href: "/services/psychology" },
+  { name: "Pelatihan & Sertifikasi", href: "/services/training" },
+  { name: "Kontak", href: "/contact" },
+];
+
+const Navbar: React.FC = () => {
+  // 1. Dapatkan path URL saat ini
+  const currentPath = usePathname();
+
+  // Fungsi untuk menentukan apakah link adalah active
+  const isActive = (href: string) => {
+    // Untuk path root ("/") harus diperiksa secara eksklusif agar tidak selalu aktif
+    if (href === "/") {
+      return currentPath === href;
+    }
+    // Untuk path lainnya, cek apakah path saat ini dimulai dengan href item navbar
+    // Ini penting jika Anda memiliki sub-path (misal: /services/psychology/detail)
+    return currentPath.startsWith(href);
+  };
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -22,17 +46,24 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-700 hover:border-blue-500 hover:text-blue-800 transition duration-150"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              // 2. Tentukan kelas aktif
+              const activeClass = isActive(item.href)
+                ? "border-blue-600 text-blue-800 font-bold" // Styling jika AKTIF
+                : "border-transparent text-gray-700 hover:border-blue-500 hover:text-blue-800"; // Styling jika TIDAK AKTIF
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  // Gabungkan kelas default dengan kelas aktif/tidak aktif
+                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition duration-150 ${activeClass}`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
-          {/* Tambahkan Hamburger menu untuk mobile di sini jika diperlukan */}
         </div>
       </div>
     </nav>
