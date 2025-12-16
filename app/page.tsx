@@ -1,67 +1,133 @@
-import { Briefcase, Heart, BookOpen } from "lucide-react";
+"use client";
+import { CheckCircle, Lightbulb, TrendingUp, LucideIcon } from "lucide-react";
 import Link from "next/link";
+import React from "react";
+import Image from "next/image"; // Diperlukan untuk logo dan hero image
 
+// --- Interface Data ---
+
+interface ServiceItem {
+  icon: string; // Diubah dari LucideIcon menjadi string untuk path gambar
+  title: string;
+  description: string;
+  slug: string;
+  color: string;
+  border: string;
+}
+
+interface FeatureItem {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+// --- Data ---
 const companyData = {
   name: "Sinergi Atmacita Utama",
   tagline: "Sinergi Kesejahteraan Jiwa dan Kompetensi Unggul",
   description:
     "Sinergi Atmacita Utama adalah perusahaan konsultan yang berfokus ganda pada peningkatan kualitas sumber daya manusia (SDM). Kami menggabungkan keahlian psikologis mendalam dengan program pelatihan dan sertifikasi berstandar tinggi untuk mencapai potensi individu dan organisasi secara menyeluruh.",
   vision:
-    "Menjadi mitra strategis terdepan dalam membentuk individu dan organisasi yang berdaya saing tinggi, didukung oleh keseimbangan mental yang sehat dan kompetensi yang teruji.",
+    "Menjadi mitra strategis terpercaya dalam pengembangan kompetensi sumber daya manusia Indonesia melalui pelatihan dan sertifikasi yang berkualitas, inovatif, dan berstandar nasional maupun internasional.",
 };
 
-const services = [
+const services: ServiceItem[] = [
   {
-    icon: Heart,
+    icon: "/images/logo-psi.png", // Path gambar kustom
     title: "Divisi Psikologi",
     description:
-      "Menyediakan layanan asesmen psikologis, konseling individu, konseling karir, dan program Employee Assistance Program (EAP). Fokus kami adalah memahami dinamika internal dan memfasilitasi pertumbuhan mental yang stabil dan produktif.",
+      "Layanan asesmen, konseling individu & karir, serta Employee Assistance Program (EAP) untuk pertumbuhan mental yang stabil dan produktif.",
     slug: "/services/psychology",
-    color: "text-red-500 bg-red-100",
+    color: "text-red-600 bg-red-50",
+    border: "border-red-500",
   },
   {
-    icon: BookOpen,
+    icon: "/images/logo-training.png", // Path gambar kustom
     title: "Divisi Training & Certification",
     description:
-      "Menyelenggarakan pelatihan keterampilan teknis dan non-teknis (soft skills), serta program sertifikasi profesi yang diakui. Kami memastikan SDM memiliki kompetensi yang relevan dan terkini sesuai tuntutan industri.",
+      "Pelatihan keterampilan teknis/non-teknis (soft skills) dan program sertifikasi profesi berstandar tinggi yang diakui industri.",
     slug: "/services/training",
-    color: "text-green-500 bg-green-100",
+    color: "text-green-600 bg-green-50",
+    border: "border-green-500",
   },
 ];
 
-export default function HomePage() {
+const features: FeatureItem[] = [
+  {
+    icon: Lightbulb,
+    title: "Pendekatan Holistik",
+    description:
+      "Menggabungkan aspek psikologis (mental) dan kompetensi hard skill (profesional) untuk hasil yang seimbang dan berkelanjutan.",
+  },
+  {
+    icon: CheckCircle,
+    title: "Berbasis Bukti Ilmiah",
+    description:
+      "Setiap program dan asesmen kami didasarkan pada riset ilmiah terkini dan standar profesional yang berlaku.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Sertifikasi Kompeten",
+    description:
+      "Program pelatihan kami menghasilkan sertifikat yang diakui, memvalidasi keahlian Anda di pasar industri.",
+  },
+];
+
+// --- Komponen Halaman ---
+const HomePage: React.FC = () => {
   return (
     <>
-      <main className="min-h-screen bg-gray-50">
-        {/* Hero Section */}
-        <header className="bg-blue-800 text-white py-20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-5xl font-extrabold mb-4">{companyData.name}</h1>
-            <p className="text-xl italic font-light">{companyData.tagline}</p>
+      <main className="min-h-screen">
+        {/* 1. Hero Section - Modern UI dengan Image Placeholder */}
+        <header className="bg-white pt-24 pb-16 md:pt-32 md:pb-24">
+          <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
+            {/* Teks Konten */}
+            <div>
+              <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2">
+                {companyData.tagline}
+              </p>
+              <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                Menciptakan SDM Unggul
+                <span className="block text-blue-600">
+                  dari Dalam dan Luar.
+                </span>
+              </h1>
+              <p className="text-lg text-gray-600 mb-8">
+                {companyData.description}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/services/psychology"
+                  className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+                >
+                  Lihat Layanan Utama
+                </Link>
+                <Link
+                  href="/contact"
+                  className="px-8 py-3 bg-white border border-gray-300 text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition duration-300"
+                >
+                  Hubungi Konsultan
+                </Link>
+              </div>
+            </div>
+
+            {/* Image Placeholder / Slider (dengan perbaikan Image Component) */}
+            <div className="relative aspect-video bg-gray-200 rounded-xl shadow-2xl overflow-hidden">
+              <Image
+                src="/images/hero-image.jpg"
+                alt="Ilustrasi Sinergi Psikologi dan Pelatihan"
+                fill // Menggunakan fill (boolean)
+                style={{ objectFit: "cover" }} // Menggunakan style={{ objectFit: 'cover' }}
+                priority // Agar dimuat cepat
+              />
+              <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xl font-medium"></div>
+            </div>
           </div>
         </header>
 
-        {/* About Section */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-gray-800 mb-6 border-b-4 border-blue-400 inline-block pb-1">
-              Pendahuluan
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              {companyData.description}
-            </p>
-
-            <div className="p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg shadow-inner">
-              <h3 className="text-2xl font-semibold text-yellow-800 mb-2">
-                Visi Kami
-              </h3>
-              <p className="text-gray-700 italic">{companyData.vision}</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Divisi Fokus (Key Services) */}
-        <section className="py-16 bg-white">
+        {/* 2. Divisi Fokus (Key Services) - Tampilan Kartu yang Diperbarui */}
+        <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">
               Dua Pilar Kekuatan Kami
@@ -70,18 +136,25 @@ export default function HomePage() {
               Kami beroperasi melalui dua divisi utama yang saling melengkapi.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-10">
+            <div className="grid md:grid-cols-2 gap-8">
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className="p-8 border border-gray-200 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1"
+                  className={`p-10 border-t-8 ${service.border} bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 text-left`}
                 >
                   <div
-                    className={`p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 ${service.color}`}
+                    className={`p-3 rounded-xl w-30 h-30 flex items-center justify-center mb-6 relative overflow-hidden`}
                   >
-                    <service.icon size={36} />
+                    {/* Mengganti <service.icon> dengan Image Component */}
+                    <Image
+                      src={service.icon}
+                      alt={`Logo ${service.title}`}
+                      fill // Agar mengisi div parent w-14 h-14
+                      style={{ objectFit: "contain" }} // Agar logo tidak terpotong
+                      className="p-1" // Beri padding di Image agar logo tidak terlalu mepet
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-3">
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-6">{service.description}</p>
@@ -111,50 +184,39 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Why Choose Us Section (Optional) */}
-        <section className="py-16 bg-gray-50">
+        {/* 3. Why Choose Us Section - Tampilan Fitur List yang Clean */}
+        <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-4xl font-bold text-gray-800 text-center mb-10">
-              Mengapa Memilih Kami?
+              Mengapa Memilih {companyData.name}?
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {/* Item 1 */}
-              <div className="p-6 text-center">
-                <Briefcase className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                <h4 className="text-xl font-semibold mb-2">
-                  Pendekatan Holistik
-                </h4>
-                <p className="text-gray-600">
-                  Menggabungkan aspek psikologis dan kompetensi hard skill untuk
-                  hasil yang seimbang.
-                </p>
-              </div>
-              {/* Item 2 */}
-              <div className="p-6 text-center">
-                <Briefcase className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                <h4 className="text-xl font-semibold mb-2">Berbasis Bukti</h4>
-                <p className="text-gray-600">
-                  Setiap program didasarkan pada riset ilmiah dan standar
-                  profesional terkini.
-                </p>
-              </div>
-              {/* Item 3 */}
-              <div className="p-6 text-center">
-                <Briefcase className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                <h4 className="text-xl font-semibold mb-2">
-                  Sertifikasi Kompeten
-                </h4>
-                <p className="text-gray-600">
-                  Program pelatihan yang menghasilkan sertifikat yang diakui di
-                  industri.
-                </p>
-              </div>
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="p-6 border border-gray-200 rounded-lg shadow-sm text-center transition duration-300 hover:border-blue-300 hover:shadow-lg"
+                >
+                  <feature.icon className="w-10 h-10 text-blue-600 mx-auto mb-4" />
+                  <h4 className="text-xl font-bold mb-2 text-gray-800">
+                    {feature.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Footer bisa ditambahkan di luar komponen main, atau sebagai komponen terpisah */}
+        {/* 4. Visi Section - Full Width Banner */}
+        <section className="bg-blue-500 py-16 text-white">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h3 className="text-3xl font-bold mb-4">Visi Kami</h3>
+            <p className="text-xl italic font-light">{companyData.vision}</p>
+          </div>
+        </section>
       </main>
     </>
   );
-}
+};
+
+export default HomePage;

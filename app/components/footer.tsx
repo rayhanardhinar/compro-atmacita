@@ -19,22 +19,20 @@ const navItems = [
   { name: "Kontak", href: "/contact" },
 ];
 
-// Data Kontak
 const contactInfo = [
   {
     icon: MapPin,
-    text: "Jl. Sinergi No. 10, Jakarta Selatan",
+    text: "Perum Graha Amerta Bunder Blok P-13, Gresik, Jawa Timur",
     href: "/contact",
   },
-  { icon: Phone, text: "+62 21 555 1234", href: "tel:+62215551234" },
+  { icon: Phone, text: "+62 12345678", href: "tel:+62122345678" },
   {
     icon: Mail,
-    text: "info@sinergiatmacita.com",
-    href: "mailto:info@sinergiatmacita.com",
+    text: "atmapsikologi@gmail.com",
+    href: "mailto:atmapsikologi@gmail.com",
   },
 ];
 
-// Data Media Sosial
 const socialMedia = [
   {
     icon: Instagram,
@@ -97,7 +95,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {contactInfo.map((item) => (
                 <li key={item.text} className="flex items-center">
-                  <item.icon className="w-5 h-5 text-blue-400 mr-3 flex-shrink-0" />
+                  <item.icon className="w-5 h-5 text-blue-400 mr-3 shrink-0" />
                   <a
                     href={item.href}
                     className="text-gray-400 hover:text-blue-400 transition duration-150 text-sm"

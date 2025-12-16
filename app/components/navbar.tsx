@@ -2,6 +2,7 @@
 import Link from "next/link";
 // Import usePathname dari navigation untuk mendapatkan path saat ini
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import React from "react";
 
 // Definisikan tipe untuk item navigasi
@@ -12,7 +13,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: "Home", href: "/" },
-  { name: "Profil", href: "/profile" },
+  { name: "Tentang Kami", href: "/profile" },
   { name: "Layanan Psikologi", href: "/services/psychology" },
   { name: "Pelatihan & Sertifikasi", href: "/services/training" },
   { name: "Kontak", href: "/contact" },
@@ -42,7 +43,13 @@ const Navbar: React.FC = () => {
               href="/"
               className="shrink-0 flex items-center text-2xl font-bold text-blue-800"
             >
-              Sinergi Atmacita Utama
+              <Image
+                src="/images/logo-sau.png"
+                alt="Logo"
+                width={120}
+                height={120}
+                className="mr-2"
+              />
             </Link>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

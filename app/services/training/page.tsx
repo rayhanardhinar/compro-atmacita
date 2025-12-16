@@ -29,27 +29,29 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 // 3. Halaman Utama (TrainingServicesPage)
 const TrainingServicesPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold text-green-700 mb-6">
-        Pelatihan & Sertifikasi
-      </h1>
-      <p className="text-xl text-gray-700 mb-8">
-        Meningkatkan kompetensi dan validasi keahlian profesional.
-      </p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto py-12 px-4">
+        <h1 className="text-4xl font-bold text-green-700 mb-6">
+          Pelatihan & Sertifikasi
+        </h1>
+        <p className="text-xl text-gray-700 mb-8">
+          Meningkatkan kompetensi dan validasi keahlian profesional.
+        </p>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <ServiceCard
-          icon={GraduationCap}
-          title="Pelatihan Soft Skills"
-          description="Program pengembangan kepemimpinan, komunikasi, dan *problem solving*."
-          color="text-green-500" // Warna untuk ikon
-        />
-        <ServiceCard
-          icon={Award}
-          title="Sertifikasi Profesi"
-          description="Persiapan dan ujian sertifikasi yang diakui secara nasional dan internasional."
-          color="text-green-500" // Warna untuk ikon
-        />
+        <div className="grid md:grid-cols-2 gap-8">
+          <ServiceCard
+            icon={GraduationCap}
+            title="Pelatihan Soft Skills"
+            description="Program pengembangan kepemimpinan, komunikasi, dan *problem solving*."
+            color="text-green-500" // Warna untuk ikon
+          />
+          <ServiceCard
+            icon={Award}
+            title="Sertifikasi Profesi"
+            description="Persiapan dan ujian sertifikasi yang diakui secara nasional dan internasional."
+            color="text-green-500" // Warna untuk ikon
+          />
+        </div>
       </div>
     </div>
   );

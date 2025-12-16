@@ -27,39 +27,41 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 // 3. Halaman Utama (PsychologyServicesPage)
 const PsychologyServicesPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold text-red-700 mb-6">
-        Layanan Psikologi
-      </h1>
-      <p className="text-xl text-gray-700 mb-8">
-        Fokus pada kesejahteraan mental individu dan organisasi.
-      </p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto py-12 px-4">
+        <h1 className="text-4xl font-bold text-red-700 mb-6">
+          Layanan Psikologi
+        </h1>
+        <p className="text-xl text-gray-700 mb-8">
+          Fokus pada kesejahteraan mental individu dan organisasi.
+        </p>
 
-      <div className="grid md:grid-cols-3 gap-8">
-        <ServiceCard
-          icon={Zap}
-          title="Asesmen Psikologis"
-          description="Pengukuran kepribadian, minat, dan bakat menggunakan alat uji terstandardisasi."
-        />
-        <ServiceCard
-          icon={Users}
-          title="Konseling Individu & Karir"
-          description="Sesi tatap muka dan daring untuk mengatasi masalah pribadi dan perencanaan karir."
-        />
-        <ServiceCard
-          icon={Zap}
-          title="Employee Assistance Program (EAP)"
-          description="Dukungan psikologis untuk karyawan dalam lingkup perusahaan."
-        />
-      </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          <ServiceCard
+            icon={Zap}
+            title="Asesmen Psikologis"
+            description="Pengukuran kepribadian, minat, dan bakat menggunakan alat uji terstandardisasi."
+          />
+          <ServiceCard
+            icon={Users}
+            title="Konseling Individu & Karir"
+            description="Sesi tatap muka dan daring untuk mengatasi masalah pribadi dan perencanaan karir."
+          />
+          <ServiceCard
+            icon={Zap}
+            title="Employee Assistance Program (EAP)"
+            description="Dukungan psikologis untuk karyawan dalam lingkup perusahaan."
+          />
+        </div>
 
-      <div className="mt-12 text-center">
-        <Link
-          href="/contact"
-          className="bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300"
-        >
-          Konsultasi Sekarang
-        </Link>
+        <div className="mt-12 text-center">
+          <Link
+            href="/contact"
+            className="bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-red-700 transition duration-300"
+          >
+            Konsultasi Sekarang
+          </Link>
+        </div>
       </div>
     </div>
   );
