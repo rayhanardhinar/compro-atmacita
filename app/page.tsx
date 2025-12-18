@@ -1,87 +1,15 @@
 "use client";
-import { CheckCircle, Lightbulb, TrendingUp, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import Image from "next/image"; // Diperlukan untuk logo dan hero image
+import Image from "next/image";
+import { companyData, services, features } from "./data/atmacitaData";
 
-// --- Interface Data ---
-
-interface ServiceItem {
-  icon: string; // Diubah dari LucideIcon menjadi string untuk path gambar
-  title: string;
-  description: string;
-  slug: string;
-  color: string;
-  border: string;
-}
-
-interface FeatureItem {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
-
-// --- Data ---
-const companyData = {
-  name: "Sinergi Atmacita Utama",
-  tagline: "Sinergi Kesejahteraan Jiwa dan Kompetensi Unggul",
-  description:
-    "Sinergi Atmacita Utama adalah perusahaan konsultan yang berfokus ganda pada peningkatan kualitas sumber daya manusia (SDM). Kami menggabungkan keahlian psikologis mendalam dengan program pelatihan dan sertifikasi berstandar tinggi untuk mencapai potensi individu dan organisasi secara menyeluruh.",
-  vision:
-    "Menjadi mitra strategis terpercaya dalam pengembangan kompetensi sumber daya manusia Indonesia melalui pelatihan dan sertifikasi yang berkualitas, inovatif, dan berstandar nasional maupun internasional.",
-};
-
-const services: ServiceItem[] = [
-  {
-    icon: "/images/logo-psi.png", // Path gambar kustom
-    title: "Divisi Psikologi",
-    description:
-      "Layanan asesmen, konseling individu & karir, serta Employee Assistance Program (EAP) untuk pertumbuhan mental yang stabil dan produktif.",
-    slug: "/services/psychology",
-    color: "text-red-600 bg-red-50",
-    border: "border-red-500",
-  },
-  {
-    icon: "/images/logo-training.png", // Path gambar kustom
-    title: "Divisi Training & Certification",
-    description:
-      "Pelatihan keterampilan teknis/non-teknis (soft skills) dan program sertifikasi profesi berstandar tinggi yang diakui industri.",
-    slug: "/services/training",
-    color: "text-green-600 bg-green-50",
-    border: "border-green-500",
-  },
-];
-
-const features: FeatureItem[] = [
-  {
-    icon: Lightbulb,
-    title: "Pendekatan Holistik",
-    description:
-      "Menggabungkan aspek psikologis (mental) dan kompetensi hard skill (profesional) untuk hasil yang seimbang dan berkelanjutan.",
-  },
-  {
-    icon: CheckCircle,
-    title: "Berbasis Bukti Ilmiah",
-    description:
-      "Setiap program dan asesmen kami didasarkan pada riset ilmiah terkini dan standar profesional yang berlaku.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Sertifikasi Kompeten",
-    description:
-      "Program pelatihan kami menghasilkan sertifikat yang diakui, memvalidasi keahlian Anda di pasar industri.",
-  },
-];
-
-// --- Komponen Halaman ---
 const HomePage: React.FC = () => {
   return (
     <>
       <main className="min-h-screen">
-        {/* 1. Hero Section - Modern UI dengan Image Placeholder */}
         <header className="bg-white pt-24 pb-16 md:pt-32 md:pb-24">
           <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
-            {/* Teks Konten */}
             <div>
               <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2">
                 {companyData.tagline}
@@ -143,21 +71,25 @@ const HomePage: React.FC = () => {
                   className={`p-10 border-t-8 ${service.border} bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 text-left`}
                 >
                   <div
-                    className={`p-3 rounded-xl w-30 h-30 flex items-center justify-center mb-6 relative overflow-hidden`}
+                    className={`p-3 rounded-xl flex items-center justify-start mb-6 overflow-hidden`}
                   >
                     {/* Mengganti <service.icon> dengan Image Component */}
                     <Image
                       src={service.icon}
                       alt={`Logo ${service.title}`}
-                      fill // Agar mengisi div parent w-14 h-14
+                      width={service.logoWidth}
+                      height={service.logoHeight}
                       style={{ objectFit: "contain" }} // Agar logo tidak terpotong
-                      className="p-1" // Beri padding di Image agar logo tidak terlalu mepet
                     />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <div>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <div>
+                    <p className="text-gray-600 mb-6">{service.description}</p>
+                  </div>
                   <Link
                     href={service.slug}
                     className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition duration-150"
@@ -204,14 +136,6 @@ const HomePage: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* 4. Visi Section - Full Width Banner */}
-        <section className="bg-blue-500 py-16 text-white">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold mb-4">Visi Kami</h3>
-            <p className="text-xl italic font-light">{companyData.vision}</p>
           </div>
         </section>
       </main>
