@@ -1,31 +1,46 @@
+import React from "react";
 import { companyData } from "../data/atmacitaData";
+import Image from "next/image";
 
-export default function ProfilePage() {
+const ProfilePage: React.FC = () => {
   const accentColor = "#F7C71F";
 
   return (
     <div className="min-h-screen bg-white">
       {/* 1. Hero Section */}
-      <section className="bg-blue-900 py-20 text-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-extrabold mb-6">Tentang Atmacita</h1>
-          <p className="text-xl max-w-2xl mx-auto text-blue-100">
-            Mitra strategis dalam pengembangan mental dan profesional,
-            menjembatani potensi diri dengan kesuksesan karir.
+      <section className="relative py-35 text-white">
+        <Image
+          src="/images/bg-about.jpg"
+          alt="Sinergi Atmacita Utama"
+          fill
+          className="object-cover pointer-events-none select-none"
+        />
+        <div className="absolute inset-0 bg-blue-900/80 mix-blend-multiply"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-5xl font-extrabold mb-6">
+            Tentang Sinergi Atmacita Utama
+          </h1>
+          <p className="text-xl max-w-6xl mx-auto text-blue-100">
+            PT Sinergi Atmacita Utama adalah sebuah perusahaan yang bergerak di
+            bidang jasa konsultasi dan pengembangan sumber daya manusia (SDM)
+            berbasis psikologi. Perusahaan ini berfokus pada peningkatan
+            kompetensi individu dan organisasi melalui berbagai layanan
+            profesional yang terintegrasi. Atmacita berkomitmen untuk memberikan
+            pelayanan dan kontribusi terbaiknya bagi seluruh klien.
           </p>
         </div>
       </section>
 
       {/* 2. Visi & Misi Section */}
       <section className="py-20 max-w-7xl mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
           <div
             className="bg-gray-50 p-8 rounded-2xl border-l-8"
             style={{ borderColor: accentColor }}
           >
             <h2 className="text-2xl font-bold text-blue-900 mb-4">Visi Kami</h2>
             <p className="text-gray-700 leading-relaxed text-lg italic">
-              {companyData.vision}
+              &quot;{companyData.vision}&quot;
             </p>
           </div>
 
@@ -46,17 +61,27 @@ export default function ProfilePage() {
       </section>
 
       {/* 3. Core Values Section */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+      <section className="relative py-20 bg-blue-900 text-white">
+        <Image
+          src="/images/bg-about2.jpg"
+          alt="Sinergi Atmacita Utama"
+          fill
+          className="object-cover pointer-events-none select-none"
+        />
+        <div className="absolute inset-0 bg-blue-900/80 mix-blend-multiply"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-12">Nilai Utama Kami</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {companyData.values.map((val, index) => (
               <div
                 key={index}
-                className="p-8 rounded-xl border border-blue-700 hover:border-yellow-400 transition-colors"
+                className="p-8 rounded-xl bg-blue-900/30 backdrop-blur-md border border-blue-700 hover:border-yellow-400 transition-colors"
               >
-                <div className="text-4xl mb-4" style={{ color: accentColor }}>
-                  ✦
+                <div
+                  className="mb-4 flex justify-center"
+                  style={{ color: accentColor }}
+                >
+                  <val.icon className="w-10 h-10" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">{val.title}</h3>
                 <p className="text-blue-100 text-sm">{val.description}</p>
@@ -81,7 +106,7 @@ export default function ProfilePage() {
           {companyData.whyUs.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow"
+              className="bg-gray-50 flex items-center justify-center p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow"
             >
               <p className="font-semibold text-blue-800">{item}</p>
             </div>
@@ -105,4 +130,6 @@ export default function ProfilePage() {
       </section>
     </div>
   );
-}
+};
+
+export default ProfilePage;

@@ -1,4 +1,11 @@
-import { CheckCircle, Lightbulb, TrendingUp, LucideIcon } from "lucide-react";
+import {
+  CheckCircle,
+  Lightbulb,
+  TrendingUp,
+  LucideIcon,
+  ShieldCheck,
+  HeartHandshake,
+} from "lucide-react";
 
 export interface ServiceItem {
   icon: string;
@@ -18,6 +25,7 @@ export interface FeatureItem {
 }
 
 export interface CoreValue {
+  icon: LucideIcon;
   title: string;
   description: string;
 }
@@ -47,16 +55,19 @@ export const companyData: companyData = {
   ],
   values: [
     {
+      icon: ShieldCheck,
       title: "Integritas",
       description:
         "Menjunjung tinggi etika profesional dalam setiap layanan psikologi dan pelatihan.",
     },
     {
+      icon: TrendingUp,
       title: "Inovasi",
       description:
         "Terus berkembang mengikuti tren industri untuk memberikan materi yang up-to-date.",
     },
     {
+      icon: HeartHandshake,
       title: "Empati",
       description:
         "Memahami kebutuhan personal dan organisasi secara mendalam.",
@@ -78,7 +89,7 @@ export const services: ServiceItem[] = [
       "Layanan asesmen, konseling individu & karir, serta Employee Assistance Program (EAP) untuk pertumbuhan mental yang stabil dan produktif.",
     slug: "/services/psychology",
     color: "text-red-600 bg-red-50",
-    border: "border-red-500",
+    border: "border-yellow-500",
     logoWidth: 150,
     logoHeight: 150,
   },
@@ -89,7 +100,7 @@ export const services: ServiceItem[] = [
       "Pelatihan keterampilan teknis/non-teknis (soft skills) dan program sertifikasi profesi berstandar tinggi yang diakui industri.",
     slug: "/services/training",
     color: "text-green-600 bg-green-50",
-    border: "border-green-500",
+    border: "border-orange-500",
     logoWidth: 100,
     logoHeight: 100,
   },
