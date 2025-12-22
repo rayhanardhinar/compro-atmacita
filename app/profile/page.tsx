@@ -1,6 +1,8 @@
 import React from "react";
-import { companyData } from "../data/atmacitaData";
+import { profileData } from "../data/atmacitaData";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, MessageCircle } from "lucide-react";
 
 const ProfilePage: React.FC = () => {
   const accentColor = "#F7C71F";
@@ -14,6 +16,7 @@ const ProfilePage: React.FC = () => {
           alt="Sinergi Atmacita Utama"
           fill
           className="object-cover pointer-events-none select-none"
+          priority
         />
         <div className="absolute inset-0 bg-blue-900/80 mix-blend-multiply"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
@@ -30,7 +33,6 @@ const ProfilePage: React.FC = () => {
           </p>
         </div>
       </section>
-
       {/* 2. Visi & Misi Section */}
       <section className="py-20 max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -40,14 +42,14 @@ const ProfilePage: React.FC = () => {
           >
             <h2 className="text-2xl font-bold text-blue-900 mb-4">Visi Kami</h2>
             <p className="text-gray-700 leading-relaxed text-lg italic">
-              &quot;{companyData.vision}&quot;
+              &quot;{profileData.vision}&quot;
             </p>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold text-blue-900 mb-6">Misi Kami</h2>
             <ul className="space-y-4">
-              {companyData.missions.map((mission, index) => (
+              {profileData.missions.map((mission, index) => (
                 <li key={index} className="flex items-start">
                   <span className="shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center text-sm font-bold mt-1 mr-3">
                     {index + 1}
@@ -59,7 +61,6 @@ const ProfilePage: React.FC = () => {
           </div>
         </div>
       </section>
-
       {/* 3. Core Values Section */}
       <section className="relative py-20 bg-blue-900 text-white">
         <Image
@@ -72,10 +73,10 @@ const ProfilePage: React.FC = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-12">Nilai Utama Kami</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {companyData.values.map((val, index) => (
+            {profileData.values.map((val, index) => (
               <div
                 key={index}
-                className="p-8 rounded-xl bg-blue-900/30 backdrop-blur-md border border-blue-700 hover:border-yellow-400 transition-colors"
+                className="p-8 rounded-xl bg-blue-900/30 backdrop-blur-md border border-blue-700 hover:border-yellow-400 duration-300 transform hover:-translate-y-1 transition"
               >
                 <div
                   className="mb-4 flex justify-center"
@@ -91,41 +92,36 @@ const ProfilePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. Why Choose Us Section */}
-      <section className="py-20 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900">
-            Mengapa Memilih Atmacita?
-          </h2>
-          <div
-            className="h-1 w-20 mx-auto mt-4"
-            style={{ backgroundColor: accentColor }}
-          ></div>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {companyData.whyUs.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-50 flex items-center justify-center p-6 rounded-lg text-center shadow-sm hover:shadow-md transition-shadow"
-            >
-              <p className="font-semibold text-blue-800">{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* 5. CTA Section */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold text-blue-900 mb-6">
-            Siap Mengembangkan Potensi Anda?
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Elemen dekoratif abstrak untuk menarik mata ke tengah */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50"></div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4 leading-tight">
+            Langkah Kecil Hari Ini untuk <br />
+            <span className="text-yellow-400">Transformasi Besar</span> Masa
+            Depan.
           </h2>
-          <button
-            className="px-8 py-3 rounded-full font-bold text-blue-900 transition-transform hover:scale-105"
-            style={{ backgroundColor: accentColor }}
-          >
-            Hubungi Kami Sekarang
-          </button>
+          <p className="text-gray-600 mb-10 text-lg max-w-2xl mx-auto">
+            Bergabunglah dengan profesional dan organisasi yang telah berkembang
+            bersama layanan psikologi dan pelatihan Atmacita.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center">
+            <Link
+              href="/contact"
+              className="group px-10 py-4 rounded-full font-bold text-blue-950 flex items-center shadow-lg hover:shadow-yellow-400/20 transition-all hover:scale-105 active:scale-95"
+              style={{ backgroundColor: accentColor }}
+            >
+              Mulai Konsultasi
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <p className="mt-6 text-sm text-gray-400 italic">
+            * Respon cepat tim kami tersedia di jam operasional.
+          </p>
         </div>
       </section>
     </div>

@@ -1,10 +1,12 @@
 import {
-  CheckCircle,
-  Lightbulb,
   TrendingUp,
   LucideIcon,
   ShieldCheck,
   HeartHandshake,
+  BookOpenCheck,
+  UserCheck,
+  FileBadge,
+  Settings2,
 } from "lucide-react";
 
 export interface ServiceItem {
@@ -19,7 +21,7 @@ export interface ServiceItem {
 }
 
 export interface FeatureItem {
-  icon: LucideIcon;
+  iconName: LucideIcon;
   title: string;
   description: string;
 }
@@ -30,17 +32,16 @@ export interface CoreValue {
   description: string;
 }
 
-export interface companyData {
+export interface profileData {
   name: string;
   tagline: string;
   description: string;
   vision: string;
   missions: string[];
   values: CoreValue[];
-  whyUs: string[];
 }
 
-export const companyData: companyData = {
+export const profileData: profileData = {
   name: "Sinergi Atmacita Utama",
   tagline: "Sinergi Kesejahteraan Jiwa dan Kompetensi Unggul",
   description:
@@ -73,12 +74,6 @@ export const companyData: companyData = {
         "Memahami kebutuhan personal dan organisasi secara mendalam.",
     },
   ],
-  whyUs: [
-    "Kurikulum Berbasis Praktik",
-    "Tim Ahli Psikolog & Trainer Berpengalaman",
-    "Sertifikasi Resmi & Terakreditasi",
-    "Pendekatan Personal & Custom",
-  ],
 };
 
 export const services: ServiceItem[] = [
@@ -108,21 +103,41 @@ export const services: ServiceItem[] = [
 
 export const features: FeatureItem[] = [
   {
-    icon: Lightbulb,
-    title: "Pendekatan Holistik",
+    title: "Kurikulum Praktis",
     description:
-      "Menggabungkan aspek psikologis (mental) dan kompetensi hard skill (profesional) untuk hasil yang seimbang dan berkelanjutan.",
+      "Materi dirancang untuk diaplikasikan langsung dalam dunia kerja, mengutamakan simulasi dan studi kasus nyata.",
+    iconName: BookOpenCheck,
   },
   {
-    icon: CheckCircle,
-    title: "Berbasis Bukti Ilmiah",
+    title: "Tenaga Ahli Profesional",
     description:
-      "Setiap program dan asesmen kami didasarkan pada riset ilmiah terkini dan standar profesional yang berlaku.",
+      "Didukung oleh tim Psikolog dan Trainer bersertifikat yang memiliki jam terbang tinggi di industri.",
+    iconName: UserCheck,
   },
   {
-    icon: TrendingUp,
-    title: "Sertifikasi Kompeten",
+    title: "Sertifikasi Resmi",
     description:
-      "Program pelatihan kami menghasilkan sertifikat yang diakui, memvalidasi keahlian anda di pasar industri.",
+      "Program kami terakreditasi, memberikan nilai tambah yang diakui secara nasional bagi karir Anda.",
+    iconName: FileBadge,
+  },
+  {
+    title: "Pendekatan Personal",
+    description:
+      "Layanan yang fleksibel dan dapat disesuaikan (custom) dengan kebutuhan spesifik individu atau organisasi.",
+    iconName: Settings2,
   },
 ];
+
+export const contactData = {
+  address: "Perum Graha Amerta Bunder Blok P-13, Gresik, Jawa Timur",
+  phone: "+62 12345678",
+  email: "atmapsikologi@gmail.com",
+  whatsapp: "+62 812 3456 7890",
+  mapsUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.551923087991!2d112.6075021758908!3d-7.177678692827265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e77ff5cbe9344a9%3A0xcfb7d0fb74474b80!2sGraha%20Amerta%20Bunder%20P13!5e0!3m2!1sid!2sid!4v1766394918682!5m2!1sid!2sid",
+  workingHours: [
+    { day: "Senin - Jumat", time: "08:00 - 16:00" },
+    { day: "Sabtu", time: "09:00 - 14:00" },
+    { day: "Minggu", time: "Tutup" },
+  ],
+};

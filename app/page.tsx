@@ -2,17 +2,17 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import { companyData, services, features } from "./data/atmacitaData";
+import { profileData, services, features } from "./data/atmacitaData";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <main className="min-h-screen">
-        <header className="bg-white pt-24 pb-16 md:pt-32 md:pb-24">
+        <header className="min-h-screen bg-white pt-24 pb-16 md:pt-32 md:pb-24">
           <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-2">
-                {companyData.tagline}
+                {profileData.tagline}
               </p>
               <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
                 Menciptakan SDM Unggul
@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
                 </span>
               </h1>
               <p className="text-lg text-gray-600 mb-8">
-                {companyData.description}
+                {profileData.description}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -45,9 +45,9 @@ const HomePage: React.FC = () => {
               <Image
                 src="/images/hero-image.jpg"
                 alt="Ilustrasi Sinergi Psikologi dan Pelatihan"
-                fill // Menggunakan fill (boolean)
-                style={{ objectFit: "cover" }} // Menggunakan style={{ objectFit: 'cover' }}
-                priority // Agar dimuat cepat
+                fill
+                style={{ objectFit: "cover" }}
+                priority
               />
               <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xl font-medium"></div>
             </div>
@@ -117,24 +117,50 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* 3. Why Choose Us Section - Tampilan Fitur List yang Clean */}
-        <section className="py-20 bg-white">
+        <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-gray-800 text-center mb-10">
-              Mengapa Memilih {companyData.name}?
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="p-6 border border-gray-200 rounded-lg shadow-sm text-center transition duration-300 hover:border-blue-300 hover:shadow-lg"
-                >
-                  <feature.icon className="w-10 h-10 text-blue-600 mx-auto mb-4" />
-                  <h4 className="text-xl font-bold mb-2 text-gray-800">
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
-                </div>
-              ))}
+            {/* Header Section */}
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4">
+                Mengapa Memilih Atmacita?
+              </h2>
+              <p className="text-gray-500 max-w-2xl mx-auto">
+                Kami mengintegrasikan ilmu psikologi dengan kebutuhan industri
+                untuk menciptakan SDM yang unggul dan kompeten.
+              </p>
+              {/* Garis Aksen Kuning Atmacita */}
+              <div className="h-1.5 w-20 mx-auto mt-6 rounded-full bg-yellow-400"></div>
+            </div>
+
+            {/* Grid Card Section */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature, index) => {
+                // Karena iconName adalah komponen (LucideIcon), kita alias-kan ke Icon (Huruf Besar)
+                const Icon = feature.iconName;
+
+                return (
+                  <div
+                    key={index}
+                    className="group p-8 bg-white border border-gray-100 rounded-2xl shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-blue-100"
+                  >
+                    <div className="w-16 h-16 mx-auto mb-6 bg-blue-50 rounded-2xl flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+                      <Icon
+                        size={32}
+                        strokeWidth={1.5}
+                        className="transition-colors duration-300 group-hover:text-white text-yellow-400"
+                      />
+                    </div>
+
+                    <h4 className="text-xl font-bold mb-3 text-blue-900 group-hover:text-blue-600 transition-colors text-center">
+                      {feature.title}
+                    </h4>
+
+                    <p className="text-gray-600 text-sm leading-relaxed text-center">
+                      {feature.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

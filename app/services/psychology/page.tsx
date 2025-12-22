@@ -3,21 +3,18 @@ import { Zap, Users, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-// 1. Definisikan Interface untuk Props ServiceCard
 interface ServiceCardProps {
-  icon: LucideIcon; // Type untuk ikon dari lucide-react
+  icon: LucideIcon;
   title: string;
   description: string;
 }
 
-// 2. Komponen Pembantu (ServiceCard) dengan TypeScript
 const ServiceCard: React.FC<ServiceCardProps> = ({
   icon: Icon,
   title,
   description,
 }) => (
   <div className="p-6 bg-white border border-red-200 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-    {/* Menggunakan Icon Component yang di-destructure dari props */}
     <Icon className="w-8 h-8 text-red-500 mb-4" />
     <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
     <p className="text-gray-600">{description}</p>
