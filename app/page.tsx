@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { profileData, services, features } from "./data/atmacitaData";
 
 const HomePage: React.FC = () => {
@@ -21,7 +22,14 @@ const HomePage: React.FC = () => {
                 </span>
               </h1>
               <p className="text-lg text-gray-600 mb-8">
-                {profileData.description}
+                <span className="text-blue-600 font-bold">
+                  Sinergi Atmacita Utama
+                </span>{" "}
+                adalah perusahaan konsultan yang berfokus ganda pada peningkatan
+                kualitas sumber daya manusia (SDM). Kami menggabungkan keahlian
+                psikologis mendalam dengan program pelatihan dan sertifikasi
+                berstandar tinggi untuk mencapai potensi individu dan organisasi
+                secara menyeluruh.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -55,61 +63,71 @@ const HomePage: React.FC = () => {
         </header>
 
         {/* 2. Divisi Fokus (Key Services) - Tampilan Kartu yang Diperbarui */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Dua Pilar Kekuatan Kami
-            </h2>
-            <p className="text-lg text-gray-500 mb-12">
-              Kami beroperasi melalui dua divisi utama yang saling melengkapi.
-            </p>
+        <section className="py-30 bg-gray-50 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 relative">
+            <div className="absolute -top-30 -left-24 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl shadow-inner"></div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="text-center mb-16 relative">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4">
+                Dua Pilar Kekuatan Kami
+              </h2>
+              <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                Sinergi layanan psikologi dan pelatihan profesional untuk
+                pertumbuhan SDM yang menyeluruh.
+              </p>
+              <div className="h-1.5 w-20 bg-yellow-400 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-10">
               {services.map((service, index) => (
                 <div
                   key={index}
-                  className={`p-10 border-t-8 ${service.border} bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 text-left`}
+                  className={`group relative p-10 bg-white border-t-8 ${service.border} rounded-2xl shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-between`}
                 >
-                  <div
-                    className={`p-3 rounded-xl flex items-center justify-start mb-6 overflow-hidden`}
-                  >
-                    {/* Mengganti <service.icon> dengan Image Component */}
-                    <Image
-                      src={service.icon}
-                      alt={`Logo ${service.title}`}
-                      width={service.logoWidth}
-                      height={service.logoHeight}
-                      style={{ objectFit: "contain" }} // Agar logo tidak terpotong
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                  <div className="absolute inset-0 bg-linear-to-br from-white via-white to-gray-50/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+
+                  <div className="relative z-10">
+                    {/* Logo Container */}
+                    <div className="mb-8 flex justify-start items-center h-30 overflow-hidden">
+                      <Image
+                        src={service.icon}
+                        alt={service.title}
+                        width={service.logoWidth}
+                        height={service.logoHeight}
+                        className="transition-transform duration-500 group-hover:scale-110 grayscale-30 group-hover:grayscale-0"
+                        style={{ objectFit: "contain" }}
+                      />
+                    </div>
+
+                    <h3 className="text-3xl font-bold text-gray-900 mb-4">
                       {service.title}
                     </h3>
+
+                    <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                      {service.description}
+                    </p>
                   </div>
-                  <div>
-                    <p className="text-gray-600 mb-6">{service.description}</p>
-                  </div>
-                  <Link
-                    href={service.slug}
-                    className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition duration-150"
-                  >
-                    Pelajari Lebih Lanjut
-                    <svg
-                      className="ml-2 w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+
+                  <div className="relative z-10">
+                    <Link
+                      href={service.slug}
+                      className={`inline-flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+                        index === 0
+                          ? "bg-yellow-500 text-white hover:bg-yellow-400"
+                          : "bg-orange-500 text-white hover:bg-green-600"
+                      }`}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      ></path>
-                    </svg>
-                  </Link>
+                      Pelajari Lebih Lanjut
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+
+                  {/* Eleman Dekoratif Pojok */}
+                  <div
+                    className={`absolute bottom-4 right-4 w-12 h-12 rounded-full opacity-5 ${
+                      index === 0 ? "bg-yellow-500" : "bg-orange-500"
+                    }`}
+                  ></div>
                 </div>
               ))}
             </div>

@@ -35,7 +35,6 @@ export interface CoreValue {
 export interface profileData {
   name: string;
   tagline: string;
-  description: string;
   vision: string;
   missions: string[];
   values: CoreValue[];
@@ -44,8 +43,6 @@ export interface profileData {
 export const profileData: profileData = {
   name: "Sinergi Atmacita Utama",
   tagline: "Sinergi Kesejahteraan Jiwa dan Kompetensi Unggul",
-  description:
-    "Sinergi Atmacita Utama adalah perusahaan konsultan yang berfokus ganda pada peningkatan kualitas sumber daya manusia (SDM). Kami menggabungkan keahlian psikologis mendalam dengan program pelatihan dan sertifikasi berstandar tinggi untuk mencapai potensi individu dan organisasi secara menyeluruh.",
   vision:
     "Menjadi mitra strategis terpercaya dalam pengembangan kompetensi sumber daya manusia Indonesia melalui pelatihan dan sertifikasi yang berkualitas, inovatif, dan berstandar nasional maupun internasional.",
   missions: [
